@@ -1,4 +1,5 @@
 const express = require('express');
+const serverless = require('serverless-http');
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 
@@ -80,3 +81,5 @@ async function sendEmailToUser(userEmail, content) {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+module.exports.handler = serverless(app);
