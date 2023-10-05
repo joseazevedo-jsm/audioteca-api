@@ -80,7 +80,7 @@ async function sendEmailToUser(userEmail, content) {
   }
 }
 
-app.use('/service', router);
+app.use('/.netlify/functions/api', router);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
