@@ -10,12 +10,14 @@ const port = 3000; // Set your desired port number
 const apiKey = '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';
 
 app.use(express.json());
+const router = express.Router();
 
 const prompt = "Gere frases inspiradoras inspiradas no estoicismo em português," + 
 "com uma probabilidade de alto alcance (80%-90%) nas redes sociais. Cada frase deve refletir os princípios estoicos de sabedoria, "+
 "resiliência e força interior. Após gerar as frases, mostre as estatísticas de desempenho, incluindo o alcance, engajamento, feedback dos usuários e hashtags."
 
-app.get('/generate-inspirational-quotes', async (req, res) => {
+
+router.get('/generate-inspirational-quotes', async (req, res) => {
   try {
     const { emails } = req.body;
 
@@ -77,6 +79,8 @@ async function sendEmailToUser(userEmail, content) {
     console.error('Error sending email:', error);
   }
 }
+
+app.use('/service', router);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
